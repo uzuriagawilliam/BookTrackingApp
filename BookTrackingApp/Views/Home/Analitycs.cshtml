@@ -1,0 +1,123 @@
+﻿@model TotalBooks
+
+@{
+    ViewData["Title"] = "Analitycs";
+}
+
+<div class="container"">
+    <div class="analitycs-container">
+
+    
+    <div class="analitycs-titel">You have a total of @Model.Totalbooks books in your library</div>
+    <table class="analitycs-table">  
+    @*<tr class="analitycs-row">     
+      <td>Total Books in your Library</td> <td>@Model.Totalbooks</td>
+    </tr>*@
+
+    <tr>
+      <td>Alrady Read</td> <td>@Model.alradyRead</td>
+    </tr> 
+
+    <tr>     
+      <td>Reading now</td>  <td>@Model.readingNow</td>
+    </tr>
+
+    <tr>      
+      <td>Wants to read</td> <td>@Model.wantToRead</td>
+    </tr>
+
+    <tr>      
+      <td >Will read soon</td> <td>@Model.willRead</td>
+    </tr>
+ 
+</table>
+
+<div class="chart">
+    <canvas id="barchart"></canvas>
+</div>
+    
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+
+    var barCanvas = document.getElementById("barchart");
+
+    var totalBooks = [@Model.Totalbooks];
+    var alreadyRead = [@Model.alradyRead];
+    var readingNow = [@Model.readingNow];//these are all javascript array variables
+    var wantToRead = [@Model.wantToRead];
+    var willRead = [@Model.willRead]; 
+
+    var TotalBooks = {
+        label: 'Total Books In Library',
+        data: totalBooks,
+        backgroundColor: 'rgb(76, 85, 84)',
+        borderWidth: 0,
+        lineTension: 0,
+    };
+
+    var AlreadyRead = {
+        label: 'Already Read',
+        data: alreadyRead,
+        backgroundColor: 'rgb(85,76,82)',
+        borderWidth: 0,
+        lineTension: 0,
+    }
+
+    var ReadingNow = {
+        label: 'Reading Now',
+        data: readingNow,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderWidth: 0,
+        lineTension: 0,
+    };
+
+    var WantToRead = {
+        label: 'Want To Read',
+        data: wantToRead,
+        backgroundColor: 'rgb(54, 162, 235)',
+        borderWidth: 0,
+    };
+
+    var WillRead = {
+        label: 'Will Read Soon',
+        data: willRead,
+        backgroundColor: 'rgb(157, 230, 41)',
+        borderWidth: 0,
+    };
+    
+
+    var datasetvalues = {
+        labels: ["Books"],//x-axis label values
+        datasets: [TotalBooks, AlreadyRead, ReadingNow, WantToRead, WillRead]//y-axis
+    };
+
+    var chartOptions = {
+        scales: {
+            xAxes: [{
+                barPercentage: 1,//Percent (0-1) of the available width each bar should
+                categoryPercentage: 0.6,//Percent (0-1) of the available width each category
+
+            }],
+            yAxes: [{
+                barPercentage: 1,
+                categoryPercentage: 0.6,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+        }
+    };
+
+    var barChart = new Chart(barCanvas, {
+        type: 'bar',
+        data: datasetvalues,
+        options: chartOptions
+    });
+
+</script>

@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Add A Book";
+}
+
+<div class="container">
+
+  <div class="main-container">
+
+    <section class="main-section">
+      <div class="main-text-intro">
+          <div class="main-text-intro-title">
+            Track of your reading habits
+          </div>
+          <div class="main-text-intro-paragraf">
+          <p>
+              Even if you're a bookworm who devours countless books, this book tracking app will
+              be an invaluable tool for optimizing your reading experience. 
+          </p>
+          </div>
+          <div class="main-text-intro-image">
+            <img src="~/img/BooksInWindows.jpg" class="main-text-intro-image-img"/>
+          </div>
+      </div>
+
+      <div class="form-add-book-container">
+        <form action="/Home/Index" method="post" class="form-add-book" role="form">
+
+            <div asp-validation-summary = "All" class="text-danger"></div>
+
+            <fieldset>
+                <legend> Add A New Book</legend>
+
+                  <div class="form-add-new-book">
+                    <label for="title">Title: </label>
+                    <input type="text" name="Title" id="title">
+                
+                  </div>
+                  <div class="form-add-new-book">
+                    <label for="author">Author: </label>
+                    <input type="text" name="Author" id="author" required>
+                  </div>
+                  <div class="form-add-new-book">
+                    <label for="rating">Rating: </label>
+                    <input type="number" name="Rating" id="rating" required>
+                  </div>
+                  <div class="form-add-new-book">
+                    <label for="comment">Comment: </label>
+                    <textarea maxlength="200" name="Comment" id="comment" ></textarea>
+                  </div>
+                  <div class="form-add-new-book-input-select">
+                      <div class="form-page-number">
+                            <label for="number-pages">Number Of Pages: </label>
+                            <input type="number" name="Pages" id="number-pages" required>
+                      </div>
+                      <div class="form-book-status">
+                        <label for="status">Status: </label>
+                        <select name="Status" id="status">
+                          <option value="want-to-read">Want To Read</option>
+                          <option value="reading-now">Reading now</option>
+                          <option value="will-read-soon">Will Read Soon</option>
+                          <option value="alrady-read">Already Read</option>
+                        </select>
+                      </div>
+                  </div>
+
+                  <div class="submit-btn">
+                    <input type="submit" value="Add">
+                  </div>
+            </fieldset>
+        </form>
+       </div>
+    </section>
+
+    <div class="cards">
+        <div class="cards-title">
+            <h3>Recommeded reading for you</h3>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="./img/libro-suenos-de-vida.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Suenos de nuestra vida</h5>
+            <p class="card-text">Esta es una narracion detallada de como el hombre moderno en su camino evolutivo observo y comenzo a estudiar algunos fenomenos que estaban en la penumbra. </p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="./img/3096240.RS500x500.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Conversaciones Con John Searle</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="./img/10-frases-cambiar-mundo-texto9_75be1009_1200x1200.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Podemos cambiar nuestra relacion con el mundo?</h5>
+            <p class="card-text">Este libro pretende dar respuesta a la situacion dolorosa que atraviesa el mundo.</p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+    </div>
+
+  </div>
+</div>
+
+</div>

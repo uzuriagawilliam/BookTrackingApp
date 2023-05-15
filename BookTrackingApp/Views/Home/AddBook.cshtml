@@ -1,0 +1,45 @@
+﻿@model Book 
+
+@{
+    ViewData["Title"] = "Your book has been succesfully added";
+}
+
+<div class="Added-book-wrapper">
+
+    <div class="Added-book-container">
+
+        <h4>Your book has been succesfully added</h4>
+
+        <a  asp-controller="Home" asp-action="Index">Back To Home</a>
+    </div>
+
+    <div class="cards">
+        <div class="cards-title">
+            <h3>Recommeded reading for you</h3>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="~/img/libro-suenos-de-vida.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Suenos de nuestra vida</h5>
+            <p class="card-text">Esta es una narracion detallada de como el hombre moderno en su camino evolutivo observo y comenzo a estudiar algunos fenomenos que estaban en la penumbra. </p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="~/img/3096240.RS500x500.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Conversaciones Con John Searle</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+        </div>
+        <div class="card" style="width: 75%;">
+          <img src="~/img/10-frases-cambiar-mundo-texto9_75be1009_1200x1200.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Podemos cambiar nuestra relacion con el mundo?</h5>
+            <p class="card-text">Este libro pretende dar respuesta a la situacion dolorosa que atraviesa el mundo.</p>
+            <a href="#" class="btn btn-primary">Read more</a>
+          </div>
+    </div>
+</div>
+</div>

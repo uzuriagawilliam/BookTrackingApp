@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookTrackingApp", "BookTrackingApp\BookTrackingApp.csproj", "{376FC45E-E5EE-4567-9FED-089E1EF22693}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimarron.IDP", "Cimarron.IDP\Cimarron.IDP.csproj", "{26F93A64-364A-4AA4-8D1B-CAD1F7BD75B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{376FC45E-E5EE-4567-9FED-089E1EF22693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376FC45E-E5EE-4567-9FED-089E1EF22693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376FC45E-E5EE-4567-9FED-089E1EF22693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376FC45E-E5EE-4567-9FED-089E1EF22693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26F93A64-364A-4AA4-8D1B-CAD1F7BD75B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F93A64-364A-4AA4-8D1B-CAD1F7BD75B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F93A64-364A-4AA4-8D1B-CAD1F7BD75B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F93A64-364A-4AA4-8D1B-CAD1F7BD75B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8FBED7F-AC59-4AA8-90A0-CA0654E28480}
+	EndGlobalSection
+EndGlobal

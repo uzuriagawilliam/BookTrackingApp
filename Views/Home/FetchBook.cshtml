@@ -1,0 +1,117 @@
+﻿@model Rootobject   
+
+@{
+    ViewData["Title"] = "Fetch Book From Api";    
+}
+
+@{
+    if (Model.items == null)
+    {
+
+        <div class="library-table">
+
+            <div class="margin-15">
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Not book was found</h5>                    
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <div class="library-table">
+                @{
+                    var length = Model.items.Count();
+                    for (int i = 0; i < length; i++)
+                    {
+                        <div class="margin-15">
+                            <div class="card" style="width: 15rem;">
+                                <div class="card-body">                                
+                                <form action="/Home/Index" method="post" role="form">
+                                    <table>
+                                      <table-body>
+                                       <tr>
+                                           <td rowspan="2" width="120px">
+                                            @try{
+                                                    <img src=@Model.items[i].volumeInfo.imageLinks.smallThumbnail>                                         
+                                                }
+                                                catch{
+                                                    <img src="~/img/image-not-found.jpg">
+                                                }
+                                           </td>                           
+                                           <td> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <td valign="bottom" class="table-td-title">
+                                            @Model.items[i].volumeInfo.title  
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2" class="table-td-author">
+                                         By: @Model.items[i].volumeInfo.authors[0]
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                       <td colspan="2" class="table-td-comment">
+                                            @{
+                                                string description = "";
+                                                if(Model.items[i].volumeInfo.description.Count() < 200)
+                                                {
+                                                    description = Model.items[i].volumeInfo.description;                                                            
+                                                }
+                                                else
+                                                {
+                                                    description = Model.items[i].volumeInfo.description.Substring(0,200);                                                              
+                                                }
+                                            }
+                                            @description
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                       <td colspan="2" class="table-td-pages">
+                                            @Model.items[i].volumeInfo.pageCount pages
+                                       </td>
+                                        </tr>
+                                       <tr>
+                                       <td colspan="2" class="table-td-status">
+                                       <label for="status">Status: </label>
+                                        <select name="Status" id="status">
+                                          <option value="want-to-read">Want To Read</option>
+                                          <option value="reading-now">Reading now</option>
+                                          <option value="will-read-soon">Will Read Soon</option>
+                                          <option value="alrady-read">Already Read</option>
+                                        </select>
+                                        
+                                       </td>
+                                        </tr>
+                                       <tr>
+                                       <td colspan="2" class="table-td-rating">
+                                        Rating (1 to 5) <input type="number" name="Rating" width="5"  min="1" max="5"/> <!--ToDo: Show stars-->
+                                       </td>
+                                       </tr>
+                                      </table-body>
+                                  </table>
+
+                                      <input type="hidden" name="Title" value="@Model.items[i].volumeInfo.title" />
+                                      <input type="hidden" name="Author" value="@Model.items[i].volumeInfo.authors[0]" />
+                                      <input type="hidden" name="Comment" value="@description" />
+                                      <input type="hidden" name="Pages" value="@Model.items[i].volumeInfo.pageCount" />
+                                    
+                                    <input type="submit" class="btn-library" value="Add Book To your Library" />
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    }
+}

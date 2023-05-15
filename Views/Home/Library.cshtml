@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Book>;
+
+@{
+    ViewData["Title"] = "Library";
+} 
+
+
+<div class="library-title container">
+    <h2>Library</h2>
+</div>
+
+<div class="container">
+
+<div class="library-table">
+        @{
+            foreach(var book in Model)
+            {
+                <div class="margin-15">
+                    <div class="card" style="width: 10rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@book.Title</h5>                    
+                            <p class="card-text">By @book.Author</p>
+                            <p class="card-text">@book.Comment</p>
+                            <p class="card-text">@book.Pages pages</p>
+                            <p class="card-text">Status: @book.Status</p>
+                            <p class="card-text">Rating: @book.Rating</p> <!--ToDo: Show stars-->
+                            <input type="button" class="btn-library" value="Delete Book" onclick="location.href='@Url.Action("DeleteBook", "Home",  new {BookId = @book.BookId})'" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+</div>
+
+</div>

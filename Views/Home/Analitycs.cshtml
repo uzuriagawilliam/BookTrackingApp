@@ -1,0 +1,35 @@
+﻿@model TotalBooks
+
+@{
+    ViewData["Title"] = "Analitycs";
+}
+
+<div class="container"">
+    <div>
+    <div class="analitycs-titel">Library Analitycs</div>
+    <table class="analitycs-table">  
+    <tr class="analitycs-row">     
+      <td>Total red</td>
+      <td></td>
+      <td>@Model.alradyRead</td>
+    </tr>
+    <tr>     
+      <td>Reading now</td>
+      <td></td>
+      <td>@Model.readingNow</td>
+    </tr>
+    <tr>      
+      <td>Wants to read</td>
+      <td></td>
+      <td>@Model.wantToRead</td>
+    </tr>
+    <tr>      
+      <td >Will read soon</td>
+      <td></td>
+      <td>@Model.willRead</td>
+    </tr>
+ 
+</table>
+
+</div>
+</div>

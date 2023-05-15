@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/StyleSheet1.css" />
+    <link rel="Stylesheet" href="" />
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+</head>
+<body>
+    <header>        
+    <navbar-brand>
+        <a asp-controller="Home" asp-action="Index"><img src="~/img/btApp.jpg"/> </a>
+    </navbar-brand>
+
+        <nav>        
+            <ul>
+                <li> 
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li> 
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Library">Library</a>
+                </li>
+                <li>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Analitycs">Analitycs</a>
+                </li>
+                @if(User.IsInRole("user"))
+                {
+                    <li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddSearchedBook">Add New Book</a>
+                    </li>
+                }
+                <li>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                </li>
+                @if(User.Identity.IsAuthenticated)
+                {                    
+                    <li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="LogOut">Log Out</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+
+    <div>
+       @RenderBody()
+    </div>
+    </main>
+    <footer>
+        Copyright 2005 - 2023, Book Tracking App, Stockolm, Sweden | <a href="#">Privacy Policy</a>
+    </footer>
+    <script src='~/JavaScript.js'>
+        
+    </script>
+</body>
+</html>

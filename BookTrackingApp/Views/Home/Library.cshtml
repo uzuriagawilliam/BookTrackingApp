@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Book>;
+
+@{
+    ViewData["Title"] = "Library";
+} 
+
+
+<div class="library-title container">
+    <h2>Library</h2>
+</div>
+
+<div class="container ">
+<div class="library-container">
+    <div class="library-filter">
+        <table width=100%>
+        <tr>
+            <td style: align="right">
+                Filters 
+
+            </td>
+
+            <td style: align="right" width=50%>
+                <form action="/Home/Library" method="post" style="display: inline-block"> 
+                    <input type="hidden" name="status"  value="reading-now"/><button type="submit">Reading now</button>
+                </form>
+                <form action="/Home/Library" method="post" style="display: inline-block"> 
+                    <input type="hidden" name="status"  value="want-to-read"/><button type="submit">Want To Read</button>
+                </form>
+                <form action="/Home/Library" method="post" style="display: inline-block"> 
+                    <input type="hidden" name="status"  value="will-read-soon"/><button type="submit">Will Read Soon</button>
+                </form>
+                <form action="/Home/Library" method="post" style="display: inline-block"> 
+                    <input type="hidden" name="status"  value="alrady-read"/><button type="submit">Already Read</button>
+                </form>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+<div class="library-table">
+    @{
+        if(Model.Count() == 0)
+        {
+            <div class="card" style="width: 15rem;">
+                <div class="card-body">
+                    <table>
+                        <table-body>
+                            <tr>
+                                <td rowspan="2" width="120px">
+                                            
+                                    <img src="~/img/image-not-found.jpg" /> 
+                                    
+                                </td>                           
+                            <td> 
+                            </td>
+                        </tr>
+                        <tr>
+                        <td valign="bottom" class="table-td-title">
+                                
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2" class="table-td-author">
+                                
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2" class="table-td-comment">
+                        "No items to be display."
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2" class="table-td-pages">
+                                
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2" class="table-td-status">
+                                
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2" class="table-td-rating">
+                                
+                        </td>
+                        </tr>
+                        </table-body>
+                        </table>                                
+                    </div>
+            </div>
+        }
+        else
+        {
+                    
+            foreach(var book in Model)
+            {
+                string source = "";
+                <div class="margin-15">
+                    <div class="card" style="width: 15rem;">
+                        <div class="card-body">
+                            <table>
+                                <table-body>
+                                    <tr>
+                                        <td rowspan="2" width="120px">
+                                            @{
+                                                if (book.Image != "")
+                                                    source = book.Image;
+                                                else
+                                                    source = "~/img/image-not-found.jpg";
+                                            }
+                                            <img src="@Url.Content(source)" class="table-td-img" /> 
+                                    
+                                        </td>                           
+                                    <td> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td valign="bottom" class="table-td-title">
+                                @book.Title  
+                                </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="table-td-author">
+                                    By: @book.Author
+                                </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="table-td-comment">
+                                @book.Comment
+                                </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="table-td-pages">
+                                @book.Pages pages
+                                </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="table-td-status">
+                                Status: @book.Status
+                                </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="table-td-rating">
+                                Rating: @book.Rating <!--ToDo: Show stars-->
+                                </td>
+                                </tr>
+                                </table-body>
+                                </table>
+
+                                <input type="button" class="btn-library" value="Delete Book"
+                                onclick="location.href='@Url.Action("DeleteBook", "Home",  new {BookId = @book.BookId})'" />
+
+                            </div>
+                    </div>
+                </div>
+            }
+     }
+}
+</div>
+
+</div>
+</div>
