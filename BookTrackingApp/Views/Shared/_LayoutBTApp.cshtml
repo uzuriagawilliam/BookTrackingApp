@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/StyleSheet1.css" />
     <link rel="Stylesheet" href="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
@@ -33,9 +34,17 @@
                 </li>
                 @if(User.Identity.IsAuthenticated)
                 {                    
-                    <li>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="LogOut">Log Out</a>
-                    </li>
+                    @*<li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="LogOut">Log Out @User.Identity.Name</a>
+                    </li>*@
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn">Hello @User.Identity.Name! <i class="fa-sharp fa-regular fa-square-caret-down"></i></button>
+                      <div id="myDropdown" class="dropdown-content nav-link-menu">
+                        <a  asp-area="" asp-controller="Home" asp-action="Profile">Profile</a>
+                        <a  asp-area="" asp-controller="Home" asp-action="Friends">Friends</a>
+                        <a  asp-area="" asp-controller="Authentication" asp-action="LogOut">Log Out</a>                        
+                      </div>
+                    </div>
                 }
             </ul>
         </nav>
@@ -61,5 +70,26 @@
     <script src='~/JavaScript.js'>
         
     </script>
+    <script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 </body>
 </html>

@@ -53,5 +53,15 @@ namespace BookTrackingApp.Models
                 await _context.SaveChangesAsync();
             }            
         }
+
+        public async Task<IEnumerable<Friends>> GetFriends(int userid)
+        {
+            var friends = await _context.Friends.Where(b => b.UserId == userid).ToListAsync();
+            if (friends == null)
+            {
+                return null;
+            }
+            return friends;
+        }
     }
 }

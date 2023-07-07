@@ -58,9 +58,61 @@ namespace BookTrackingApp.Controllers
             return View(rootobject);            
         }
 
+        [Authorize]
+        public async Task<IActionResult> Friends()
+        {            
+            List<FriendBooks> friendBooksList = new List<FriendBooks>();
+
+            string userid = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            int result = Int32.Parse(userid);
+            var friends = await _bookRepository.GetFriends(result);
+
+            string status = "";
+            var books = await _bookRepository.GetBooks(userid, status);            
+            
+
+            foreach (var friend in friends)
+            {
+                FriendBooks friendBooks = new FriendBooks();
+                friendBooks.Friend = friend;
+                foreach(var book in books)
+                {
+                    if (book.FriendType != friend.FriendType)
+                        continue;
+                    friendBooks.Books.Add(book);
+                }
+                friendBooksList.Add(friendBooks);
+            }
+
+            return View(friendBooksList);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            UserProfile userProfile = new UserProfile();
+
+            string userid = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            int result = Int32.Parse(userid);
+            var friends = await _bookRepository.GetFriends(result);
+            int totalFreiends = friends.Count();
+            string name = User.Identity.Name;
+
+            string status = "";
+            var books = await _bookRepository.GetBooks(userid, status);
+            int totalBooks = books.Count();
+
+            userProfile.Id = result;
+            userProfile.Name = name;
+            userProfile.TotalFriends = totalFreiends;
+            userProfile.TotalBooks = totalBooks;
+
+            return View(userProfile);
+        }
+
         [HttpPost]
         [Authorize(Roles = "user, admin")]        
-        public async Task<IActionResult> Index([Bind("Image,Title,Author,Rating,Comment,Pages,Status")] Book book)
+        public async Task<IActionResult> Index([Bind("Image,Title,Author,Rating,Comment,Pages,Status,FriendType")] Book book)
         {
             if (!ModelState.IsValid)
             {

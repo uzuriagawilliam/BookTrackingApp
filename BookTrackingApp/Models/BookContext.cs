@@ -9,5 +9,6 @@ namespace BookTrackingApp.Models
 
         }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Friends> Friends { get; set; }
     }
 }

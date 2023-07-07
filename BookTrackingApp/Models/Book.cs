@@ -27,5 +27,6 @@ namespace BookTrackingApp.Models
         [Required(ErrorMessage = ("Please enter a number from 1 to 5 to rate this book"))]
         [Range(1, 5, ErrorMessage = ("Please enter a number from 1 to 5 to rate this book"))]
         public int Rating { get; set; }
+        public string? FriendType { get; set; }
     }
 }

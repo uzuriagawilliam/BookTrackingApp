@@ -1,0 +1,28 @@
+﻿@model IEnumerable<FriendBooks>
+@{
+    if (!Model.Any())
+    {
+        <h2>You have no friends yet</h2>        
+    }
+}
+@*<div class="container">*@
+    <div class="friends-container">
+        @{
+            foreach(var friend in Model)
+            {
+              <div class="card" style="width: 94%;">
+              <div class="card-body">
+                <h5 class="card-title">@friend.Friend.FriendName</h5>                
+                <p class="card-text">@friend.Friend.FriendType</p>
+                        @{
+                            foreach(var book in @friend.Books)
+                            {
+                                <p class="card-text">@book.Title</p>
+                            }
+                        }
+              </div>
+            </div>  
+            }
+        }                
+    </div>  
+@*</div>*@
